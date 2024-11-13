@@ -19,11 +19,11 @@ npm install
 ## Running the app
 
 ```bash
-$ npm start
+npm start
 ```
 
 ## Build the app
 
 ```bash
-$ npm run build
+npm run build
 ```
