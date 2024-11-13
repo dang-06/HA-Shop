@@ -19,15 +19,11 @@ npm install
 ## Running the app
 
 ```bash
-# Development Mode
 $ npm start
-
-# Watch Mode
-$ npm run start:dev
 ```
 
 ## Build the app
 
 ```bash
-$ npm run start
+$ npm run build
 ```
