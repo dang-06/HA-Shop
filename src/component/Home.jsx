@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from './Header';
+import './component.css';
 
 function ProductCard({ product }) {
     return (
-        <Link key={product.id} to={`/product/${product.id}`} className="bg-white shadow-md rounded-lg p-4 m-4 max-w-xs transform transition-transform duration-200 hover:-translate-y-1 hover:border-[#EE4D2D] border border-transparent">
+        <Link key={product.id} to={`/product/${product.id}`} className="bg-white shadow-md rounded-lg p-4 mb-3 max-w-xs transform transition-transform duration-200 hover:-translate-y-1 hover:border-[#EE4D2D] border border-transparent">
             <img src={product.img} alt={product.name} className="w-full h-48 object-cover rounded-md" />
             <h2 className="mt-4 text-lg text-gray-800">{product.name}</h2>
             <div className="mt-2 text-xs text-gray-500">
@@ -26,7 +28,7 @@ function ProductCard({ product }) {
 
 function ProductList() {
     return (
-        <div className="flex flex-wrap justify-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
             {productsWithIds.map((product, index) => (
                 <ProductCard key={index} product={product} />
             ))}
@@ -35,11 +37,36 @@ function ProductList() {
 }
 
 function Home() {
+    const [filteredProducts, setFilteredProducts] = useState(productsWithIds);
+    const handleSearch = (value) => {
+        console.log(value)
+        if (!value) setFilteredProducts(productsWithIds)
+        else setFilteredProducts(
+            productsWithIds.filter(i =>
+                i.name.toLowerCase().includes(value.toLowerCase())
+            )
+        );
+    };
     return (
-        <div className="min-h-screen bg-gray-100 p-8">
-            <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Danh sách sản phẩm</h1>
-            <ProductList />
-        </div>
+        <>
+            <Header handleSearch={handleSearch} />
+            <div class="relative w-full overflow-hidden">
+                <img class="w-full max-h-[70vh] object-cover transition-transform duration-1000 ease-in-out transform hover:scale-105" src="https://media.gucci.com/dynamic/b3c8/5ovLiESWaoVgq+XbE0ZI2D3n51U2+XPXF20cuHJgYu0q8XhkWy_3yuTn6932gGqawCU9FDfjO+gmW4rvHl5jqhaQFHNOS7wxC4O0GWm_7SS7HpvnVxUWzr7+kQmw3s6Rt+7HPHsT2bbMKTSgdFHeiN6nCP3CBkGUrid4FTpe1de7Nk4wNKHWQUzIw1dyDRs1eN+u_fn2DxOKjQNRHeRbBBmCijjSCbWYFkCMJSTXS6pFlyYMIGFIGB5QBqwUhNQx4BJuSCuGgD9kRlLKdCpf+pYOwwd0mOyaTPZf5RcR+MrOeZF5+2lsUAwrOezBlxSxywJQ2DBUWX9HM5Cv+TNu8BzYxppsHmoPmF+EHAcB2ri+RulTaRuFzdSqXSr7SP9yZcuYe9hYZXh9Xlyb4bab3w==/HP_Hero-FullBleed-Desktop_Gucci-GiftGiving-Oct24-240722-GUCCI-GIFT-24-02-303-G_001_Default.png" alt="" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black"></div>
+                <h1 class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-4xl sm:text-3xl md:text-4xl text-center text-white">
+                    AI ƯỚC TÍNH CÂN NẶNG TRONG BÁN HÀNG
+                </h1>
+            </div>
+
+            <div className="min-h-screen bg-gray-100 py-4 px-12">
+                <h1 className="text-xl font-bold text-center text-gray-800 p-4 border-b-4 border-[#EE4D2D] bg-white mb-3">Danh sách sản phẩm</h1>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+                    {filteredProducts.map((product, index) => (
+                        <ProductCard key={index} product={product} />
+                    ))}
+                </div>
+            </div>
+        </>
     );
 }
 
@@ -270,9 +297,9 @@ const products = [
     },
 ];
 
-const productsWithIds = products.map((product, index) => ({
+let productsWithIds = products.map((product, index) => ({
     id: index + 1,
-    ...product 
+    ...product
 }));
 
 export default Home;

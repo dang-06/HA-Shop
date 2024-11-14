@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './component.css';
+import Header from './Header';
 
 
 function ProductDetail() {
@@ -48,93 +49,96 @@ function ProductDetail() {
     if (!product) return <p>Không tìm thấy sản phẩm.</p>;
 
     return (
-        <div className="bg-gray-50 px-[20%] min-h-screen">
-            <div className='py-2'>
-                <p className="text-sm text-gray-500">
-                    <span className='text-[#05a] cursor-pointer' onClick={handleClick}>HA-Shop</span> &gt; <span className='text-[#05a] cursor-pointer'>{product.categoryLv1}</span> &gt; <span className='text-[#05a] cursor-pointer'>{product.categoryLv2}</span> &gt; <span className='text-[#05a]'>{product.categoryLv3}</span>
-                </p>
-            </div>
-            <div className="flex flex-wrap bg-white shadow-lg rounded-lg">
-                <div className="w-full md:w-1/2 p-4">
-                    <img src={product.img} alt={product.name} className="w-full h-full object-cover rounded-lg" />
+        <>
+            <Header />
+            <div className="bg-gray-50 px-[20%] min-h-screen">
+                <div className='py-2'>
+                    <p className="text-sm text-gray-500">
+                        <span className='text-[#05a] cursor-pointer' onClick={handleClick}>HA-Shop</span> &gt; <span className='text-[#05a] cursor-pointer'>{product.categoryLv1}</span> &gt; <span className='text-[#05a] cursor-pointer'>{product.categoryLv2}</span> &gt; <span className='text-[#05a]'>{product.categoryLv3}</span>
+                    </p>
                 </div>
-                <div className="w-full md:w-1/2 p-4">
-                    <h1 className="text-xl text-gray-800">{product.name}</h1>
-                    <div className="flex items-center mt-2">
-                        <span className="text-orange-500 text-2xl font-bold">
-                            {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
-                        </span>
+                <div className="flex flex-wrap bg-white shadow-lg rounded-lg">
+                    <div className="w-full md:w-1/2 p-4">
+                        <img src={product.img} alt={product.name} className="w-full h-full object-cover rounded-lg" />
                     </div>
-                    <div className="flex items-center mt-2 text-sm">
-                        <span className="text-yellow-500 font-bold mr-2">5 ★</span>
-                        <span className="text-gray-700">| 1K Đánh Giá</span>
-                        <span className="ml-4 text-gray-700">5K Đã Bán</span>
-                    </div>
-                    <div className=" flex gap-2 mt-4 text-xs ">
-                        <div className="text-gray-600 w-[20%]">Chính Sách Trả Hàng</div>
-                        <div className='flex gap-2 items-center'>
-                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/b69402e4275f823f7d47.svg" alt="" className='w-[15px]' />
-                            <div className="text-gray-700">
-                                Trả hàng 15 ngày
-                            </div>
-                            <div className="text-gray-600">
-                                Trả hàng miễn phí
+                    <div className="w-full md:w-1/2 p-4">
+                        <h1 className="text-xl text-gray-800">{product.name}</h1>
+                        <div className="flex items-center mt-2">
+                            <span className="text-orange-500 text-2xl font-bold">
+                                {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                            </span>
+                        </div>
+                        <div className="flex items-center mt-2 text-sm">
+                            <span className="text-yellow-500 font-bold mr-2">5 ★</span>
+                            <span className="text-gray-700">| 1K Đánh Giá</span>
+                            <span className="ml-4 text-gray-700">5K Đã Bán</span>
+                        </div>
+                        <div className=" flex gap-2 mt-4 text-xs ">
+                            <div className="text-gray-600 w-[20%]">Chính Sách Trả Hàng</div>
+                            <div className='flex gap-2 items-center'>
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/b69402e4275f823f7d47.svg" alt="" className='w-[15px]' />
+                                <div className="text-gray-700">
+                                    Trả hàng 15 ngày
+                                </div>
+                                <div className="text-gray-600">
+                                    Trả hàng miễn phí
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className=" flex gap-2 mt-4 text-xs ">
-                        <div className="text-gray-600 w-[20%]">Vận Chuyển</div>
-                        <div className='flex gap-2 items-center'>
-                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/d9e992985b18d96aab90.png" alt="" className='w-[25px]' />
-                            <div className="text-gray-700">
-                                Miễn phí vận chuyển
+                        <div className=" flex gap-2 mt-4 text-xs ">
+                            <div className="text-gray-600 w-[20%]">Vận Chuyển</div>
+                            <div className='flex gap-2 items-center'>
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/productdetailspage/d9e992985b18d96aab90.png" alt="" className='w-[25px]' />
+                                <div className="text-gray-700">
+                                    Miễn phí vận chuyển
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className=" flex gap-2 mt-4 text-xs ">
-                        <div className="text-gray-600 w-[20%]">Số lượng</div>
-                        <div className='flex gap-2 items-center'>
-                            <div className='flex cursor-pointer text-gray-500'>
-                                <button className='w-6 h-6 border flex items-center justify-center' onClick={() => {
-                                    if (count > 1) setCount(count - 1)
-                                }}>-</button>
-                                <button className='w-8 h-6 border items-center flex justify-center'>{count}</button>
-                                <button className='w-6 h-6 border items-center flex justify-center' onClick={() => {
-                                    setCount(count + 1)
-                                }}>+</button>
-                            </div>
-                            <div className="text-gray-600">
-                                1515401 sản phẩm có sẵn
+                        <div className=" flex gap-2 mt-4 text-xs ">
+                            <div className="text-gray-600 w-[20%]">Số lượng</div>
+                            <div className='flex gap-2 items-center'>
+                                <div className='flex cursor-pointer text-gray-500'>
+                                    <button className='w-6 h-6 border flex items-center justify-center' onClick={() => {
+                                        if (count > 1) setCount(count - 1)
+                                    }}>-</button>
+                                    <button className='w-8 h-6 border items-center flex justify-center'>{count}</button>
+                                    <button className='w-6 h-6 border items-center flex justify-center' onClick={() => {
+                                        setCount(count + 1)
+                                    }}>+</button>
+                                </div>
+                                <div className="text-gray-600">
+                                    1515401 sản phẩm có sẵn
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex mt-6 space-x-4  text-gray-600">
-                        <button onClick={handlePredict} className="py-2 px-4 border rounded-md hover:border-orange-600 hover:text-orange-600">
-                            Cân nặng ước tính
-                        </button>
-                        <div className='px-5 border items-center flex justify-center rounded-md'>
-                            {loading ? (
-                                <div className="spinner"></div> 
-                            ) : (
-                                weight ? (
-                                    <span>{weight} kg</span> 
+                        <div className="flex mt-6 space-x-4  text-gray-600">
+                            <button onClick={handlePredict} className="py-2 px-4 border rounded-md hover:border-orange-600 hover:text-orange-600">
+                                Cân nặng ước tính
+                            </button>
+                            <div className='px-5 border items-center flex justify-center rounded-md'>
+                                {loading ? (
+                                    <div className="spinner"></div>
                                 ) : (
-                                    <span></span> 
-                                )
-                            )}
+                                    weight ? (
+                                        <span>{weight} kg</span>
+                                    ) : (
+                                        <span></span>
+                                    )
+                                )}
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex mt-6 space-x-4">
-                        <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600">
-                            Thêm Vào Giỏ Hàng
-                        </button>
-                        <button className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">
-                            Mua Ngay
-                        </button>
+                        <div className="flex mt-6 space-x-4">
+                            <button className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600">
+                                Thêm Vào Giỏ Hàng
+                            </button>
+                            <button className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">
+                                Mua Ngay
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
